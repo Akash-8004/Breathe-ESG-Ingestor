@@ -26,19 +26,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         self.stdout.write(self.style.NOTICE('🌱 Starting database seed...'))
 
-        # Determine sample_data directory
-        # The sample_data folder is at the repo root (two levels up from manage.py)
-        backend_dir = Path(__file__).resolve().parent.parent.parent.parent
-        repo_root = backend_dir.parent
-        sample_dir = repo_root / 'sample_data'
-
-        if not sample_dir.exists():
-            self.stdout.write(self.style.ERROR(
-                f'❌ sample_data directory not found at {sample_dir}'
-            ))
-            return
-
-        # 1. Create Tenant
+        # 1. Create Tenant (always)
         tenant, created = Tenant.objects.get_or_create(
             name='Acme Corp',
             defaults={'slug': 'acme-corp'},
@@ -46,7 +34,7 @@ class Command(BaseCommand):
         status_msg = 'Created' if created else 'Already exists'
         self.stdout.write(f'  ✅ Tenant "Acme Corp" — {status_msg}')
 
-        # 2. Create User
+        # 2. Create User (always)
         user, created = User.objects.get_or_create(
             username='analyst@acme.com',
             defaults={
@@ -68,63 +56,75 @@ class Command(BaseCommand):
                 user.save()
             self.stdout.write('  ✅ User "analyst@acme.com" — Already exists')
 
-        # 3. Ingest sample files
-        sample_files = [
-            ('SAP', 'sap_export.csv', 'SAP Fuel Export', parse_sap_file),
-            ('UTILITY', 'utility_export.csv', 'Utility Electricity', parse_utility_file),
-            ('TRAVEL', 'travel_export.csv', 'Corporate Travel', parse_travel_file),
-        ]
+        # 3. Ingest sample files (optional — skipped if sample_data/ not present)
+        backend_dir = Path(__file__).resolve().parent.parent.parent.parent
+        repo_root = backend_dir.parent
+        sample_dir = repo_root / 'sample_data'
 
-        for source_type, filename, source_name, parser_func in sample_files:
-            filepath = sample_dir / filename
+        if not sample_dir.exists():
+            self.stdout.write(self.style.WARNING(
+                '  ⚠️  sample_data/ directory not found — skipping file ingestion.'
+            ))
+            self.stdout.write(self.style.WARNING(
+                '     You can upload files manually via the Ingest Data page.'
+            ))
+        else:
+            sample_files = [
+                ('SAP', 'sap_export.csv', 'SAP Fuel Export', parse_sap_file),
+                ('UTILITY', 'utility_export.csv', 'Utility Electricity', parse_utility_file),
+                ('TRAVEL', 'travel_export.csv', 'Corporate Travel', parse_travel_file),
+            ]
 
-            if not filepath.exists():
-                self.stdout.write(self.style.WARNING(
-                    f'  ⚠️  {filename} not found, skipping...'
-                ))
-                continue
+            for source_type, filename, source_name, parser_func in sample_files:
+                filepath = sample_dir / filename
 
-            self.stdout.write(f'  📄 Ingesting {filename}...')
+                if not filepath.exists():
+                    self.stdout.write(self.style.WARNING(
+                        f'  ⚠️  {filename} not found, skipping...'
+                    ))
+                    continue
 
-            # Create or get DataSource
-            data_source, _ = DataSource.objects.get_or_create(
-                tenant=tenant,
-                source_type=source_type,
-                defaults={'name': source_name},
-            )
+                self.stdout.write(f'  📄 Ingesting {filename}...')
 
-            # Create IngestionRun
-            run = IngestionRun.objects.create(
-                data_source=data_source,
-                status='PROCESSING',
-                triggered_by=user,
-            )
+                # Create or get DataSource
+                data_source, _ = DataSource.objects.get_or_create(
+                    tenant=tenant,
+                    source_type=source_type,
+                    defaults={'name': source_name},
+                )
 
-            # Read file and parse
-            try:
-                with open(filepath, 'rb') as f:
-                    row_count, error_count = parser_func(f, run, tenant, user)
+                # Create IngestionRun
+                run = IngestionRun.objects.create(
+                    data_source=data_source,
+                    status='PROCESSING',
+                    triggered_by=user,
+                )
 
-                from django.utils import timezone
-                run.status = 'COMPLETE'
-                run.row_count = row_count
-                run.error_count = error_count
-                run.completed_at = timezone.now()
-                run.save()
+                # Read file and parse
+                try:
+                    with open(filepath, 'rb') as f:
+                        row_count, error_count = parser_func(f, run, tenant, user)
 
-                self.stdout.write(self.style.SUCCESS(
-                    f'     ✅ {source_type}: {row_count} rows parsed, '
-                    f'{error_count} errors'
-                ))
-            except Exception as e:
-                from django.utils import timezone
-                run.status = 'FAILED'
-                run.error_log = str(e)
-                run.completed_at = timezone.now()
-                run.save()
-                self.stdout.write(self.style.ERROR(
-                    f'     ❌ {source_type} failed: {e}'
-                ))
+                    from django.utils import timezone
+                    run.status = 'COMPLETE'
+                    run.row_count = row_count
+                    run.error_count = error_count
+                    run.completed_at = timezone.now()
+                    run.save()
+
+                    self.stdout.write(self.style.SUCCESS(
+                        f'     ✅ {source_type}: {row_count} rows parsed, '
+                        f'{error_count} errors'
+                    ))
+                except Exception as e:
+                    from django.utils import timezone
+                    run.status = 'FAILED'
+                    run.error_log = str(e)
+                    run.completed_at = timezone.now()
+                    run.save()
+                    self.stdout.write(self.style.ERROR(
+                        f'     ❌ {source_type} failed: {e}'
+                    ))
 
         self.stdout.write('')
         self.stdout.write(self.style.SUCCESS(
