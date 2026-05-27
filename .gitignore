@@ -1,0 +1,37 @@
+# Breathe ESG - Git Ignore
+
+# Python
+*.pyc
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+
+# Django
+db.sqlite3
+db.sqlite3-journal
+.env
+media/
+staticfiles/
+*.log
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Node / Frontend
+node_modules/
+dist/
+.cache/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Sample data (not needed in production — users upload their own files)
+sample_data/
+
+# Assignment / reference files (not part of the application)
+Breathe_ESG_Tech_Intern_Assignment.pdf
+breathe_esg_agent_prompt.md
