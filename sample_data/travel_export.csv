@@ -1,0 +1,41 @@
+ReportID,EmployeeID,EmployeeName,CostCenter,TripPurpose,ExpenseType,TravelDate,Origin,Destination,OriginCode,DestCode,CabinClass,DistanceKM,HotelName,HotelCity,HotelNights,GroundTransportMode,AmountUSD,LocalCurrency
+RPT-001,EMP-101,Anika Sharma,CC-ENG,Client Meeting,Flight,2024-01-15,Mumbai,Delhi,BOM,DEL,Economy,1148,,,,,450.00,INR
+RPT-001,EMP-101,Anika Sharma,CC-ENG,Client Meeting,Hotel,2024-01-15,,,,,,,Taj Palace,Delhi,2,,180.00,USD
+RPT-001,EMP-101,Anika Sharma,CC-ENG,Client Meeting,Ground Transport,2024-01-15,Delhi,,,,,,,,50,Taxi,35.00,INR
+RPT-001,EMP-101,Anika Sharma,CC-ENG,Client Meeting,Flight,2024-01-17,Delhi,Mumbai,DEL,BOM,Economy,1148,,,,,450.00,INR
+RPT-002,EMP-102,Raj Patel,CC-SALES,Sales Conference,Flight,2024-02-05,Mumbai,London,BOM,LHR,Business,7196,,,,,3200.00,USD
+RPT-002,EMP-102,Raj Patel,CC-SALES,Sales Conference,Hotel,2024-02-05,,,,,,,The Dorchester,London,4,,1200.00,GBP
+RPT-002,EMP-102,Raj Patel,CC-SALES,Sales Conference,Ground Transport,2024-02-05,London,,,,,,,,45,Taxi,45.00,GBP
+RPT-002,EMP-102,Raj Patel,CC-SALES,Sales Conference,Flight,2024-02-09,London,Mumbai,LHR,BOM,Business,,,,,,3200.00,USD
+RPT-003,EMP-103,Sarah Chen,CC-OPS,Vendor Audit,Flight,2024-02-20,New York,San Francisco,JFK,SFO,Economy,4139,,,,,380.00,USD
+RPT-003,EMP-103,Sarah Chen,CC-OPS,Vendor Audit,Hotel,2024-02-20,,,,,,,Hilton Union Square,San Francisco,3,,750.00,USD
+RPT-003,EMP-103,Sarah Chen,CC-OPS,Vendor Audit,Ground Transport,2024-02-22,San Francisco,,,,,,,,80,Rental Car,120.00,USD
+RPT-003,EMP-103,Sarah Chen,CC-OPS,Vendor Audit,Flight,2024-02-23,San Francisco,New York,SFO,JFK,Economy,,,,,,380.00,USD
+RPT-004,EMP-104,Ahmed Khan,CC-ENG,Tech Summit,Flight,2024-03-10,Dubai,Singapore,DXB,SIN,Business,5839,,,,,2800.00,AED
+RPT-004,EMP-104,Ahmed Khan,CC-ENG,Tech Summit,Hotel,2024-03-10,,,,,,,Marina Bay Sands,Singapore,3,,900.00,SGD
+RPT-004,EMP-104,Ahmed Khan,CC-ENG,Tech Summit,Ground Transport,2024-03-10,Singapore,,,,,,,,30,Taxi,28.00,SGD
+RPT-004,EMP-104,Ahmed Khan,CC-ENG,Tech Summit,Flight,2024-03-13,Singapore,Dubai,SIN,DXB,Business,5839,,,,,2800.00,AED
+RPT-005,EMP-105,Priya Iyer,CC-HR,Training Program,Flight,2024-03-25,Delhi,Dubai,DEL,DXB,Economy,2207,,,,,550.00,INR
+RPT-005,EMP-105,Priya Iyer,CC-HR,Training Program,Hotel,2024-03-25,,,,,,,JW Marriott,Dubai,5,,1500.00,AED
+RPT-005,EMP-105,Priya Iyer,CC-HR,Training Program,Ground Transport,2024-03-25,Dubai,,,,,,,,25,Taxi,22.00,AED
+RPT-005,EMP-105,Priya Iyer,CC-HR,Training Program,Flight,2024-03-30,Dubai,Delhi,DXB,DEL,Economy,2207,,,,,550.00,INR
+RPT-006,EMP-106,James Wilson,CC-FIN,Board Meeting,Flight,2024-04-08,London,Paris,LHR,CDG,Economy,,,,,,320.00,GBP
+RPT-006,EMP-106,James Wilson,CC-FIN,Board Meeting,Hotel,2024-04-08,,,,,,,Le Meurice,Paris,2,,600.00,EUR
+RPT-006,EMP-106,James Wilson,CC-FIN,Board Meeting,Ground Transport,2024-04-09,Paris,,,,,,,,120,Train,85.00,EUR
+RPT-006,EMP-106,James Wilson,CC-FIN,Board Meeting,Flight,2024-04-10,Paris,London,CDG,LHR,Economy,,,,,,320.00,GBP
+RPT-007,EMP-107,Meera Nair,CC-LEGAL,Contract Negotiation,Flight,2024-04-22,Mumbai,Singapore,BOM,SIN,Economy,3914,,,,,680.00,INR
+RPT-007,EMP-107,Meera Nair,CC-LEGAL,Contract Negotiation,Hotel,2024-04-22,,,,,,,Raffles Hotel,Singapore,3,,1050.00,SGD
+RPT-007,EMP-107,Meera Nair,CC-LEGAL,Contract Negotiation,Ground Transport,2024-04-24,Singapore,,,,,,,,35,Train,15.00,SGD
+RPT-007,EMP-107,Meera Nair,CC-LEGAL,Contract Negotiation,Flight,2024-04-25,Singapore,Mumbai,SIN,BOM,Economy,3914,,,,,680.00,INR
+RPT-008,EMP-108,David Kim,CC-ENG,Hackathon,Flight,2024-05-12,San Francisco,New York,SFO,JFK,Economy,4139,,,,,350.00,USD
+RPT-008,EMP-108,David Kim,CC-ENG,Hackathon,Hotel,2024-05-12,,,,,,,The Standard,New York,2,,480.00,USD
+RPT-008,EMP-108,David Kim,CC-ENG,Hackathon,Ground Transport,2024-05-14,New York,,,,,,,,42,Taxi,42.00,USD
+RPT-008,EMP-108,David Kim,CC-ENG,Hackathon,Flight,2024-05-14,New York,San Francisco,JFK,SFO,Economy,4139,,,,,350.00,USD
+RPT-009,EMP-109,Lisa Wang,CC-MKTG,Partner Event,Flight,2024-06-01,Delhi,Mumbai,DEL,BOM,Economy,1148,,,,,400.00,INR
+RPT-009,EMP-109,Lisa Wang,CC-MKTG,Partner Event,Hotel,2024-06-01,,,,,,,Oberoi,Mumbai,1,,250.00,INR
+RPT-009,EMP-109,Lisa Wang,CC-MKTG,Partner Event,Ground Transport,2024-06-02,Mumbai,,,,,,,,,Rental Car,60.00,INR
+RPT-010,EMP-110,Carlos Ruiz,CC-OPS,Site Inspection,Flight,2024-06-15,London,New York,LHR,,Economy,5570,,,,,780.00,GBP
+RPT-010,EMP-110,Carlos Ruiz,CC-OPS,Site Inspection,Flight,2024-06-20,New York,Paris,,CDG,Economy,5837,,,,,650.00,USD
+RPT-010,EMP-110,Carlos Ruiz,CC-OPS,Site Inspection,Flight,2024-06-25,Paris,London,,LHR,Economy,341,,,,,180.00,EUR
+RPT-010,EMP-110,Carlos Ruiz,CC-OPS,Site Inspection,Hotel,2024-06-15,,,,,,,The Plaza,New York,5,,2000.00,USD
+RPT-010,EMP-110,Carlos Ruiz,CC-OPS,Site Inspection,Ground Transport,2024-06-17,New York,,,,,,,,60,Taxi,55.00,USD

@@ -29,9 +29,6 @@ dist/
 .DS_Store
 Thumbs.db
 
-# Sample data (not needed in production — users upload their own files)
-sample_data/
-
 # Assignment / reference files (not part of the application)
 Breathe_ESG_Tech_Intern_Assignment.pdf
 breathe_esg_agent_prompt.md
